@@ -67,7 +67,7 @@ module Speech
             self.best_match_text += " " + data['hypotheses'].first['utterance']
             self.score += data['hypotheses'].first['confidence']
             self.segments += 1
-            puts data['hypotheses'].first['utterance']
+            puts data['hypotheses'].first['utterance'] + "penis"
           end
           retrying = false
         end
