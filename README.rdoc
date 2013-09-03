@@ -1,5 +1,7 @@
 = Speech2Text
 
+Forked from taf/speech2text to modify the ffmpeg settings.
+
 Using the power of ffmpeg/flac/Google and ruby here is a simple interface to play with to convert speech to text.
 
 Using a new undocumentd speech API from Google with the help of this article: http://mikepultz.com/2011/03/accessing-google-speech-api-chrome-11/
