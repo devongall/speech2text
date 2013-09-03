@@ -87,6 +87,7 @@ module Speech
             self.score += data['hypotheses'].first['confidence']
             self.segments += 1
             puts data['hypotheses'].first['utterance']
+            the_string = data['hypotheses'].first['utterance']
           end
           retrying = false
         end
@@ -94,6 +95,7 @@ module Speech
       end
       puts "#{segments} processed: #{self.captured_json.inspect}" if self.verbose
       self.captured_json
+      return the_string
     ensure
       chunk.clean
     end
