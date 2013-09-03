@@ -15,11 +15,6 @@ module Speech
 
       self.verbose = !!options[:verbose] if options.key?(:verbose)
     end
-
-    def to_text(max=2,lang="en-US")
-      to_json(max,lang)
-      self.best_match_text if self.verbose
-    end
     
     def string(max=2,lang="en-US")
       self.best_match_text = ""
@@ -38,23 +33,6 @@ module Speech
       self.score /= self.segments
       self.captured_json
       return string
-    end
-
-    def to_json(max=2,lang="en-US")
-      self.best_match_text = ""
-      self.score = 0.0
-      self.segments = 0
-
-      url = "https://www.google.com/speech-api/v1/recognize?xjerr=1&client=speech2text&lang=#{lang}&maxresults=#{max}"
-      splitter = Speech::AudioSplitter.new(file) # based off the wave file because flac doesn't tell us the duration
-      easy = Curl::Easy.new(url)
-      splitter.split.each do|chunk|
-        chunk.build.to_flac
-        convert_chunk(easy, chunk)
-      end
-      self.best_match_text = self.best_match_text.strip
-      self.score /= self.segments
-      self.captured_json
     end
 
   protected
@@ -86,8 +64,7 @@ module Speech
             self.best_match_text += " " + data['hypotheses'].first['utterance']
             self.score += data['hypotheses'].first['confidence']
             self.segments += 1
-            puts data['hypotheses'].first['utterance']
-            the_string = data['hypotheses'].first['utterance']
+            the_string = data['hypotheses'].first['utterance'] + " "
           end
           retrying = false
         end
