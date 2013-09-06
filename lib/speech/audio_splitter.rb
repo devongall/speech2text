@@ -71,7 +71,7 @@ module Speech
 
     end
 
-    def initialize(file, chunk_size=5)
+    def initialize(file, chunk_size=15)
       self.original_file = file      
       self.duration = AudioInspector.new(file).duration
       self.size = chunk_size
