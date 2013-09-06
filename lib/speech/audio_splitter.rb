@@ -65,8 +65,8 @@ module Speech
 
       # delete the chunk file
       def clean
-        File.unlink self.chunk if File.exist?(self.chunk)
-        File.unlink self.flac_chunk if self.flac_chunk && File.exist?(self.flac_chunk)
+        #File.unlink self.chunk if File.exist?(self.chunk)
+        #File.unlink self.flac_chunk if self.flac_chunk && File.exist?(self.flac_chunk)
       end
 
     end
