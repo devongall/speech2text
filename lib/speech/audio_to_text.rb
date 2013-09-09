@@ -27,9 +27,7 @@ module Speech
       easy = Curl::Easy.new(url)
       splitter.split.each do|chunk|
         chunk.build.to_flac
-        this_string = convert_chunk(easy, chunk).to_s
-        puts this_string
-        string += this_string
+        string += convert_chunk(easy, chunk).to_s
       end
       self.best_match_text = self.best_match_text.strip
       self.score /= self.segments
